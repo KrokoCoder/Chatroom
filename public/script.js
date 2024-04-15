@@ -10,6 +10,27 @@ function createMessageInput() {
     div.appendChild(input);
 }
 
+function getAnswer(question, chatHistory) { // Remove the unnecessary async keyword
+ async function getAnswer(question, chatHistory) {
+    const chatStream = await client.chatStream({
+            chatHistory: chatHistory,
+            message: question,
+            // perform web search before answering the question. You can also use your own custom connector.
+    });
+
+    var text = "";
+
+    for await (const message of chatStream) {
+            if (message.eventType === "text-generation") {
+                     text += message.text;
+                     console.log(text);
+            }
+    }
+ }
+}
+
+
+
 window.onload = function() {
     const messageButton = document.getElementById('send');
     if (messageButton) {

@@ -29,7 +29,7 @@ async function getAnswer(question, chatHistory) {
             }
     }
 
- return text;
+ return text.valueOf();
 }
 
 exports.getAnswer = getAnswer;
