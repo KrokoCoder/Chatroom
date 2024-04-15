@@ -1,25 +1,23 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const { getAnswer } = require('./ai');
 
-const hostname = "127.0.0.1"
+const app = express();
 const port = 15000;
 
-const server = http.createServer((req,res) => {
-    const filePath = path.join(__dirname, "index.html");
-    fs.readFile(filePath, (err, content) => {
-        if(err){
-            res.writeHead(404);
-            res.write("File not found!");
-            res.end();
-        }else{
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.write(content);
-            res.end();
-        }
-    });
-});
+getAnswer('Hello', []).then(console.log);
 
-server.listen(port, hostname,() =>{
-    console.log(`Server running at http://${hostname}:${port}/`);
+// Set the root directory for static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Handle all other routes (serves index.html by default for all routes)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+app.get('/new-route', (req, res) => {
+  res.send('This is a new route');
+});
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });

@@ -1,0 +1,43 @@
+.css-class-name {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    vertical-align: border;
+    justify-content: flex-end;
+    margin-left: 500px;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+}
+.message-class{
+    margin-top: 1000px;
+    margin-left: 500px;
+    width: 600px;
+    border-radius: 10px;
+    height: 50px;
+    padding-left:200px;
+    padding-right:200px;
+    font-size: 30px;
+    background-color: #f1f1f1;
+    text-align:left;
+}
+h1{
+    margin-left: 500px;
+    margin-bottom: 20px;
+    background-color: #8d8d8d;
+
+}
+html{
+    background-color: #c0c0c0;
+}
+
+.Chatplace{
+    background-color: #f1f1f1;
+    margin-top: 40px;
+    margin-left: 375px;
+    width: 75%;
+    height: 1200px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+}

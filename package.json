@@ -1,0 +1,17 @@
+{
+  "name": "chatroom",
+  "version": "1.0.0",
+  "description": "A place where you can speak with a bot. it will be my first project that'll use node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "aitest": "node ai.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cohere-ai": "^7.9.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
