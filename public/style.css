@@ -9,6 +9,13 @@
     background-color: #b4b2b2;
     border: 1px solid #b4b2b2;
 }
+.css-class-answer{
+   
+    color: #520079;   
+    margin-right: 1000px;
+    
+
+}
 .message-class{
     margin-top: 1000px;
     margin-left: 500px;
@@ -36,7 +43,7 @@ html{
     margin-top: 40px;
     margin-left: 375px;
     width: 75%;
-    height: 1200px;
+    height: 1300px;
     font-family: Arial, sans-serif;
     font-size: 18px;
     color: #333;

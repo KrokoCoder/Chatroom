@@ -3,31 +3,42 @@ function createMessageInput() {
     input.type = "text";
     input.id = "input";
     input.value = document.getElementById('message').value;
-    input.style = "width: 25%; height: 50px; font-size: 20px; text-align: center; margin-left: 37%;";
+    input.style = "width: 25%; height: 50px; font-size: 20px; text-align: center; margin-left: 750px;";
     input.readOnly = true;
     input.className = "css-class-name";
     const div = document.getElementById('Chatbox');
     div.appendChild(input);
-}
+    console.log(document.getElementById('message').value);
 
-function getAnswer(question, chatHistory) { // Remove the unnecessary async keyword
- async function getAnswer(question, chatHistory) {
-    const chatStream = await client.chatStream({
-            chatHistory: chatHistory,
-            message: question,
-            // perform web search before answering the question. You can also use your own custom connector.
+    // req
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            // query
+            query: document.getElementById('message').value,
+        }),
+    }).then((response) => response.json())
+    .then((data) => {
+        const message = data.answer;
+        var newInput = constructMessage(message);
+        div.appendChild(newInput);
     });
-
-    var text = "";
-
-    for await (const message of chatStream) {
-            if (message.eventType === "text-generation") {
-                     text += message.text;
-                     console.log(text);
-            }
-    }
- }
 }
+
+function constructMessage(message) {
+    var input = document.createElement('input');
+    input.type = "text";
+    input.id = "input";
+    input.value = message;
+    input.style = "width: 25%; height: 50px; font-size: 20px; text-align: center; margin-left: 750px;";
+    input.readOnly = true;
+    input.className = "css-class-answer";
+    return input;
+}
+
 
 
 

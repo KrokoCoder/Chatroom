@@ -25,7 +25,6 @@ async function getAnswer(question, chatHistory) {
     for await (const message of chatStream) {
             if (message.eventType === "text-generation") {
                      text += message.text;
-                     console.log(text);
             }
     }
 
