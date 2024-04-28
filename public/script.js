@@ -3,7 +3,6 @@ function createMessageInput() {
     input.type = "text";
     input.id = "input";
     input.value = document.getElementById('message').value;
-    input.style = "width: 25%; height: 50px; font-size: 20px; text-align: center; margin-left: 750px;";
     input.readOnly = true;
     input.className = "css-class-name";
     const div = document.getElementById('Chatbox');
@@ -33,8 +32,8 @@ function constructMessage(message) {
     input.type = "text";
     input.id = "input";
     input.value = message;
-    input.style = "width: 25%; height: 50px; font-size: 20px; text-align: center; margin-left: 750px;";
     input.readOnly = true;
+    input.textarea = true;
     input.className = "css-class-answer";
     return input;
 }
