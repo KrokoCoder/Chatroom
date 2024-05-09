@@ -9,6 +9,9 @@ function createMessageInput() {
     div.appendChild(input);
     console.log(document.getElementById('message').value);
 
+    // Listen for keydown event
+    input.addEventListener('keydown', handleEnter);
+
     // req
     fetch('/chat', {
         method: 'POST',
@@ -27,13 +30,36 @@ function createMessageInput() {
     });
 }
 
+
+function handleEnter(evt) {
+    if (evt.keyCode === 13 && evt.shiftKey) {
+        // Shift + Enter: Add a new line
+        pasteIntoInput(this, "\n");
+        evt.preventDefault();
+    }
+}
+
+function pasteIntoInput(el, text) {
+    el.focus();
+    if (typeof el.selectionStart === "number" && typeof el.selectionEnd === "number") {
+        var val = el.value;
+        var selStart = el.selectionStart;
+        el.value = val.slice(0, selStart) + text + val.slice(el.selectionEnd);
+        el.selectionEnd = el.selectionStart = selStart + text.length;
+    } else if (typeof document.selection !== "undefined") {
+        var textRange = document.selection.createRange();
+        textRange.text = text;
+        textRange.collapse(false);
+        textRange.select();
+    }
+}
+
 function constructMessage(message) {
-    var input = document.createElement('input');
-    input.type = "text";
+    var input = document.createElement('textarea');
     input.id = "input";
     input.value = message;
     input.readOnly = true;
-    input.textarea = true;
+    
     input.className = "css-class-answer";
     return input;
 }
